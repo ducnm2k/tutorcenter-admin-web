@@ -208,9 +208,12 @@ export function getGallery() {
 export function getUserList() {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
+    console.log('ok2');
     try {
-      const response = await axios.get('/api/user/manage-users');
-      dispatch(slice.actions.getUserListSuccess(response.data.users));
+      const response = await axios.get(`/api/user`);
+    console.log('response',response);
+
+      dispatch(slice.actions.getUserListSuccess(response.data));
     } catch (error) {
       dispatch(slice.actions.hasError(error));
     }

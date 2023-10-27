@@ -21,6 +21,7 @@ import {
   TableContainer,
   TablePagination
 } from '@material-ui/core';
+import axios from 'axios';
 // redux
 import { useDispatch, useSelector } from '../../redux/store';
 import { getUserList, deleteUser } from '../../redux/slices/user';
@@ -93,7 +94,7 @@ export default function UserList() {
   useEffect(() => {
     dispatch(getUserList());
   }, [dispatch]);
-
+console.log(userList,'check data');
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -218,7 +219,7 @@ export default function UserList() {
                             variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
                             color={(status === 'banned' && 'error') || 'success'}
                           >
-                            {sentenceCase(status)}
+                            {sentenceCase('hoat dong')}
                           </Label>
                         </TableCell>
 
