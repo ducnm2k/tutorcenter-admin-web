@@ -187,7 +187,7 @@ console.log(userList,'check data');
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, role, status, email, avatarUrl, isVerified } = row;
+                    const { id, name, role, status, email, avatarUrl , fullname, enabled } = row;
                     const isItemSelected = selected.indexOf(name) !== -1;
 
                     return (
@@ -201,14 +201,14 @@ console.log(userList,'check data');
                         to={`${PATH_DASHBOARD.user.root}`}
                       >
                         <TableCell padding="checkbox">
-                          <Checkbox checked={isItemSelected} onChange={(event) => handleClick(event, name)} />
+                          <Checkbox checked={isItemSelected} onChange={(event) => handleClick(event, fullname)} />
                         </TableCell>
                         <TableCell align="left">{id}</TableCell>
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={name} src={avatarUrl} />
+                            {/* <Avatar alt={fullname} src={avatarUrl} /> */}
                             <Typography variant="subtitle2" noWrap>
-                              {name}
+                              {fullname}
                             </Typography>
                           </Stack>
                         </TableCell>
@@ -224,7 +224,7 @@ console.log(userList,'check data');
                         </TableCell>
 
                         <TableCell align="right">
-                          <UserMoreMenu onDelete={() => handleDeleteUser(id)} userName={name} />
+                          <UserMoreMenu onDelete={() => handleDeleteUser(id)} userName={fullname} />
                         </TableCell>
                       </TableRow>
                     );

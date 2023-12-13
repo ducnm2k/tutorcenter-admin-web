@@ -31,14 +31,14 @@ export default function UserCreate() {
   }, [dispatch]);
 
   return (
-    <Page title="Account: Create a new manager | Minimal-UI">
+    <Page title="Tasks: Assign Task | Minimal-UI">
       <Container maxWidth={themeStretch ? false : 'lg'}>
         <HeaderBreadcrumbs
-          heading={!isEdit ? 'Create a new manager' : 'Edit manager'}
+          heading={!isEdit ? 'Assign Task' : 'Assign Task'}
           links={[
             { name: 'Dashboard', href: PATH_DASHBOARD.root },
-            { name: 'Account', href: PATH_DASHBOARD.account.root },
-            { name: !isEdit ? 'New manager' : name }
+            { name: 'Tasks', href: PATH_DASHBOARD.account.root },
+            { name: !isEdit ? 'Auto Assign' : name }
           ]}
         />
 

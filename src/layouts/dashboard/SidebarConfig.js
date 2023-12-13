@@ -121,18 +121,24 @@ const sidebarConfig = [
     items: [
       // SYSTEM : ACCOUNT
       {
-        title: 'account',
+        title: 'Account',
+        path: PATH_DASHBOARD.log,
+        icon: ICONS.user
+      },
+      // SYSTEM : TASKS
+      {
+        title: 'tasks',
         path: PATH_DASHBOARD.user.root,
-        icon: ICONS.user,
+        icon: ICONS.booking,
         children: [
-          { title: 'cards', path: PATH_DASHBOARD.account.cards },
+          // { title: 'cards', path: PATH_DASHBOARD.account.cards },
           { title: 'list', path: PATH_DASHBOARD.account.list },
-          { title: 'create', path: PATH_DASHBOARD.account.newAccount }
+          { title: 'Auto Assign', path: PATH_DASHBOARD.account.newAccount }
         ]
       },
-      // SYSTEM : LOG
+      // SYSTEM : SUBJECT
       {
-        title: 'Log',
+        title: 'Subject',
         path: PATH_DASHBOARD.log,
         icon: ICONS.blog
       },
@@ -150,7 +156,7 @@ const sidebarConfig = [
       // REVENUE: Transaction History
       {
         title: 'Transaction History',
-        path: PATH_DASHBOARD.transactionHistory,
+        path: PATH_DASHBOARD.general.ecommerce,
         icon: ICONS.cart
       }
     ]

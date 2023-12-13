@@ -26,6 +26,7 @@ import { PATH_DASHBOARD } from '../../../routes/paths';
 import Label from '../../Label';
 import { UploadAvatar } from '../../upload';
 import countries from './countries';
+import axios from 'axios';
 
 // ----------------------------------------------------------------------
 
@@ -39,42 +40,43 @@ export default function UserNewForm({ isEdit, currentUser }) {
   const { enqueueSnackbar } = useSnackbar();
 
   const NewUserSchema = Yup.object().shape({
-    name: Yup.string().required('Name is required'),
-    email: Yup.string().required('Email is required').email(),
-    phoneNumber: Yup.string().required('Phone number is required'),
-    address: Yup.string().required('Address is required'),
-    country: Yup.string().required('country is required'),
-    company: Yup.string().required('Company is required'),
-    state: Yup.string().required('State is required'),
-    city: Yup.string().required('City is required'),
-    role: Yup.string().required('Role Number is required'),
-    avatarUrl: Yup.mixed().required('Avatar is required')
+    // name: Yup.string().required('Name is required'),
+    // email: Yup.string().required('Email is required').email(),
+    // phoneNumber: Yup.string().required('Phone number is required'),
+    // address: Yup.string().required('Address is required'),
+    // country: Yup.string().required('country is required'),
+    // company: Yup.string().required('Company is required'),
+    // state: Yup.string().required('State is required'),
+    // city: Yup.string().required('City is required'),
+    // role: Yup.string().required('Role Number is required'),
+    // avatarUrl: Yup.mixed().required('Avatar is required')
   });
 
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      name: currentUser?.name || '',
-      email: currentUser?.email || '',
-      phoneNumber: currentUser?.phoneNumber || '',
-      address: currentUser?.address || '',
-      country: currentUser?.country || '',
-      state: currentUser?.state || '',
-      city: currentUser?.city || '',
-      zipCode: currentUser?.zipCode || '',
-      avatarUrl: currentUser?.avatarUrl || null,
-      isVerified: currentUser?.isVerified || true,
-      status: currentUser?.status,
-      company: currentUser?.company || '',
-      role: currentUser?.role || ''
+      // name: currentUser?.name || '',
+      // email: currentUser?.email || '',
+      // phoneNumber: currentUser?.phoneNumber || '',
+      // address: currentUser?.address || '',
+      // country: currentUser?.country || '',
+      // state: currentUser?.state || '',
+      // city: currentUser?.city || '',
+      // zipCode: currentUser?.zipCode || '',
+      // avatarUrl: currentUser?.avatarUrl || null,
+      // isVerified: currentUser?.isVerified || true,
+      // status: currentUser?.status,
+      // company: currentUser?.company || '',
+      // role: currentUser?.role || ''
     },
     validationSchema: NewUserSchema,
     onSubmit: async (values, { setSubmitting, resetForm, setErrors }) => {
       try {
-        await fakeRequest(500);
+        // await fakeRequest(500);
+        const assignTask = await axios.get('/api/task/auto-assign');
         resetForm();
         setSubmitting(false);
-        enqueueSnackbar(!isEdit ? 'Create success' : 'Update success', { variant: 'success' });
+        enqueueSnackbar(!isEdit ? 'Assign success' : 'Assign success', { variant: 'success' });
         navigate(PATH_DASHBOARD.user.list);
       } catch (error) {
         console.error(error);
@@ -103,7 +105,7 @@ export default function UserNewForm({ isEdit, currentUser }) {
     <FormikProvider value={formik}>
       <Form noValidate autoComplete="off" onSubmit={handleSubmit}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={4}>
+          {/* <Grid item xs={12} md={4}>
             <Card sx={{ py: 10, px: 3 }}>
               {isEdit && (
                 <Label
@@ -181,12 +183,12 @@ export default function UserNewForm({ isEdit, currentUser }) {
                 sx={{ mx: 0, width: 1, justifyContent: 'space-between' }}
               />
             </Card>
-          </Grid>
+          </Grid> */}
 
           <Grid item xs={12} md={8}>
             <Card sx={{ p: 3 }}>
               <Stack spacing={3}>
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 3, sm: 2 }}>
+                {/* <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 3, sm: 2 }}>
                   <TextField
                     fullWidth
                     label="Full Name"
@@ -201,9 +203,9 @@ export default function UserNewForm({ isEdit, currentUser }) {
                     error={Boolean(touched.email && errors.email)}
                     helperText={touched.email && errors.email}
                   />
-                </Stack>
+                </Stack> */}
 
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 3, sm: 2 }}>
+                {/* <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 3, sm: 2 }}>
                   <TextField
                     fullWidth
                     label="Phone Number"
@@ -228,9 +230,9 @@ export default function UserNewForm({ isEdit, currentUser }) {
                       </option>
                     ))}
                   </TextField>
-                </Stack>
+                </Stack> */}
 
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 3, sm: 2 }}>
+                {/* <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 3, sm: 2 }}>
                   <TextField
                     fullWidth
                     label="State/Region"
@@ -245,9 +247,9 @@ export default function UserNewForm({ isEdit, currentUser }) {
                     error={Boolean(touched.city && errors.city)}
                     helperText={touched.city && errors.city}
                   />
-                </Stack>
+                </Stack> */}
 
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 3, sm: 2 }}>
+                {/* <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 3, sm: 2 }}>
                   <TextField
                     fullWidth
                     label="Address"
@@ -256,9 +258,9 @@ export default function UserNewForm({ isEdit, currentUser }) {
                     helperText={touched.address && errors.address}
                   />
                   <TextField fullWidth label="Zip/Code" {...getFieldProps('zipCode')} />
-                </Stack>
+                </Stack> */}
 
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 3, sm: 2 }}>
+                {/* <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 3, sm: 2 }}>
                   <TextField
                     fullWidth
                     label="Password"
@@ -273,11 +275,11 @@ export default function UserNewForm({ isEdit, currentUser }) {
                     error={Boolean(touched.role && errors.role)}
                     // helperText={touched.role && errors.role}
                   />
-                </Stack>
+                </Stack> */}
 
                 <Box sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}>
                   <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
-                    {!isEdit ? 'Create User' : 'Save Changes'}
+                    {/* {!isEdit ? 'Create User' : 'Save Changes'} */} Auto Assign
                   </LoadingButton>
                 </Box>
               </Stack>
