@@ -289,3 +289,16 @@ export function getUsers() {
     }
   };
 }
+// ----------------------------------------------------------------------
+
+export function putAutoAssign() {
+  return async (dispatch) => {
+    dispatch(slice.actions.startLoading());
+    try {
+      const response = await axios.put('/api/task/auto-assign');
+      dispatch(slice.actions.getUsersSuccess(response.data.data));
+    } catch (error) {
+      dispatch(slice.actions.hasError(error));
+    }
+  };
+}

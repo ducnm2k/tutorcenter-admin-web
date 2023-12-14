@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useCallback } from 'react';
 import { useSnackbar } from 'notistack5';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Form, FormikProvider, useFormik } from 'formik';
 // material
 import { LoadingButton } from '@material-ui/lab';
@@ -27,6 +28,7 @@ import Label from '../../Label';
 import { UploadAvatar } from '../../upload';
 import countries from './countries';
 import axios from 'axios';
+import { putAutoAssign } from '../../../redux/slices/user';
 
 // ----------------------------------------------------------------------
 
@@ -37,6 +39,7 @@ UserNewForm.propTypes = {
 
 export default function UserNewForm({ isEdit, currentUser }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
 
   const NewUserSchema = Yup.object().shape({
@@ -73,7 +76,8 @@ export default function UserNewForm({ isEdit, currentUser }) {
     onSubmit: async (values, { setSubmitting, resetForm, setErrors }) => {
       try {
         // await fakeRequest(500);
-        const assignTask = await axios.get('/api/task/auto-assign');
+        // const assignTask = await axios.get('/api/task/auto-assign');
+        dispatch(putAutoAssign());
         resetForm();
         setSubmitting(false);
         enqueueSnackbar(!isEdit ? 'Assign success' : 'Assign success', { variant: 'success' });
